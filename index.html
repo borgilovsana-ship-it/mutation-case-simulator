@@ -13,7 +13,47 @@
 <section id="shopView" class="panel hidden"><h2 class="section-title">🛒 Магазин</h2><p>Ежедневный бонус поможет накопить на новые кейсы.</p><button id="dailyBtn" class="primary">🎁 Забрать бонус +150 🪙</button><p class="muted">Бонус можно получить один раз на устройство.</p><button id="resetBtn" class="smallbtn">Сбросить сохранение</button></section><div class="footer">Prototype v0.1 · Прогресс сохраняется на этом устройстве</div></main><div id="toast" class="notice hidden"></div>
 <script>
 const KEY='mcs_save_v1';
-const plants=[{name:'Клеверок',emoji:'☘️',rarity:'Обычное',base:35,weight:42},{name:'Солнечный подсолнух',emoji:'🌻',rarity:'Необычное',base:70,weight:26},{name:'Лунная лилия',emoji:'🪷',rarity:'Редкое',base:150,weight:16},{name:'Кристальный кактус',emoji:'🌵',rarity:'Эпическое',base:300,weight:9},{name:'Звёздный гриб',emoji:'🍄',rarity:'Легендарное',base:650,weight:5},{name:'Золотое древо',emoji:'🌳',rarity:'Мифическое',base:1500,weight:2}];
+const plants=[
+{name:'Клеверок',emoji:'☘️',rarity:'Обычное',base:35,weight:35},
+{name:'Ромашка',emoji:'🌼',rarity:'Обычное',base:38,weight:32},
+{name:'Мятный росток',emoji:'🌱',rarity:'Обычное',base:40,weight:30},
+{name:'Тюльпанчик',emoji:'🌷',rarity:'Обычное',base:42,weight:28},
+{name:'Маленький кактус',emoji:'🌵',rarity:'Обычное',base:45,weight:26},
+{name:'Лесной папоротник',emoji:'🌿',rarity:'Обычное',base:48,weight:24},
+{name:'Солнечный подсолнух',emoji:'🌻',rarity:'Необычное',base:70,weight:23},
+{name:'Розовый бутон',emoji:'🌹',rarity:'Необычное',base:78,weight:22},
+{name:'Голубой колокольчик',emoji:'🔔',rarity:'Необычное',base:82,weight:21},
+{name:'Лавандовый куст',emoji:'🪻',rarity:'Необычное',base:88,weight:20},
+{name:'Клубничный кустик',emoji:'🍓',rarity:'Необычное',base:92,weight:19},
+{name:'Маленький бамбук',emoji:'🎍',rarity:'Необычное',base:95,weight:18},
+{name:'Морковная ботва',emoji:'🥕',rarity:'Необычное',base:98,weight:17},
+{name:'Лунная лилия',emoji:'🪷',rarity:'Редкое',base:150,weight:16},
+{name:'Синяя орхидея',emoji:'🪻',rarity:'Редкое',base:170,weight:15},
+{name:'Вишнёвый цвет',emoji:'🌸',rarity:'Редкое',base:185,weight:14},
+{name:'Сияющий папоротник',emoji:'🌿',rarity:'Редкое',base:195,weight:13},
+{name:'Магическая тыква',emoji:'🎃',rarity:'Редкое',base:210,weight:12},
+{name:'Ледяной кактус',emoji:'🧊',rarity:'Редкое',base:230,weight:11},
+{name:'Медовый клён',emoji:'🍁',rarity:'Редкое',base:245,weight:10},
+{name:'Кристальный кактус',emoji:'🌵',rarity:'Эпическое',base:300,weight:9},
+{name:'Призрачный гриб',emoji:'🍄',rarity:'Эпическое',base:330,weight:8},
+{name:'Радужная роза',emoji:'🌈',rarity:'Эпическое',base:360,weight:7},
+{name:'Жемчужный лотос',emoji:'🪷',rarity:'Эпическое',base:390,weight:7},
+{name:'Электрический цветок',emoji:'💠',rarity:'Эпическое',base:420,weight:6},
+{name:'Лунный бонсай',emoji:'🪴',rarity:'Эпическое',base:460,weight:6},
+{name:'Звёздный гриб',emoji:'🍄',rarity:'Легендарное',base:650,weight:5},
+{name:'Золотая роза',emoji:'🌹',rarity:'Легендарное',base:720,weight:4},
+{name:'Пламенная лилия',emoji:'🔥',rarity:'Легендарное',base:800,weight:4},
+{name:'Сердце джунглей',emoji:'💚',rarity:'Легендарное',base:900,weight:3},
+{name:'Кристалл жизни',emoji:'💎',rarity:'Легендарное',base:1000,weight:3},
+{name:'Солнечное древо',emoji:'🌳',rarity:'Легендарное',base:1150,weight:3},
+{name:'Золотое древо',emoji:'🌳',rarity:'Мифическое',base:1500,weight:2},
+{name:'Космический цветок',emoji:'🌌',rarity:'Мифическое',base:1800,weight:2},
+{name:'Драконье растение',emoji:'🐉',rarity:'Мифическое',base:2200,weight:1.5},
+{name:'Радужное древо',emoji:'🌈',rarity:'Мифическое',base:2800,weight:1.2},
+{name:'Сердце Галактики',emoji:'💫',rarity:'Божественное',base:5000,weight:0.6},
+{name:'Цветок Вечности',emoji:'🌺',rarity:'Божественное',base:7500,weight:0.35},
+{name:'Древо Мироздания',emoji:'🌌',rarity:'Божественное',base:12000,weight:0.15}
+];
 const mutations=[{name:'Золотая',emoji:'✨',mult:2,weight:24,desc:'Цена ×2'},{name:'Ледяная',emoji:'❄️',mult:2.5,weight:19,desc:'Цена ×2,5'},{name:'Неоновая',emoji:'💚',mult:3,weight:15,desc:'Цена ×3'},{name:'Радужная',emoji:'🌈',mult:5,weight:9,desc:'Цена ×5'},{name:'Космическая',emoji:'🌌',mult:8,weight:4,desc:'Цена ×8'}];
 let state=load();function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&Number.isFinite(s.coins)&&Array.isArray(s.items))return s}catch(e){}return {coins:500,items:[],daily:false,nextId:1}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}function el(id){return document.getElementById(id)}
