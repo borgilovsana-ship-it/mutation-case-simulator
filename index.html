@@ -56,7 +56,32 @@ const plants=[
 {name:'Цветок Вечности',emoji:'🌺',rarity:'Божественное',base:7500,weight:0.35},
 {name:'Древо Мироздания',emoji:'🌌',rarity:'Божественное',base:12000,weight:0.15}
 ];
-const mutations=[{name:'Золотая',emoji:'✨',mult:2,weight:24,desc:'Цена ×2'},{name:'Ледяная',emoji:'❄️',mult:2.5,weight:19,desc:'Цена ×2,5'},{name:'Неоновая',emoji:'💚',mult:3,weight:15,desc:'Цена ×3'},{name:'Радужная',emoji:'🌈',mult:5,weight:9,desc:'Цена ×5'},{name:'Космическая',emoji:'🌌',mult:8,weight:4,desc:'Цена ×8'}];
+const mutations=[
+{name:'Мокрая',emoji:'💧',mult:1.5,weight:28,desc:'Цена ×1,5'},
+{name:'Золотая',emoji:'✨',mult:2,weight:24,desc:'Цена ×2'},
+{name:'Холодная',emoji:'🧊',mult:2,weight:22,desc:'Цена ×2'},
+{name:'Замороженная',emoji:'❄️',mult:2.5,weight:17,desc:'Цена ×2,5'},
+{name:'Опылённая',emoji:'🐝',mult:3,weight:16,desc:'Цена ×3'},
+{name:'Медовая',emoji:'🍯',mult:3,weight:15,desc:'Цена ×3'},
+{name:'Неоновая',emoji:'💚',mult:3,weight:14,desc:'Цена ×3'},
+{name:'Ветреная',emoji:'🌬️',mult:3.2,weight:13,desc:'Цена ×3,2'},
+{name:'Скрученная',emoji:'🌀',mult:3.5,weight:12,desc:'Цена ×3,5'},
+{name:'Солнечная',emoji:'☀️',mult:3.5,weight:11,desc:'Цена ×3,5'},
+{name:'Лунная',emoji:'🌙',mult:4,weight:10,desc:'Цена ×4'},
+{name:'Окровавленная',emoji:'🩸',mult:4,weight:9,desc:'Цена ×4'},
+{name:'Обугленная',emoji:'🔥',mult:4.5,weight:8,desc:'Цена ×4,5'},
+{name:'Шокированная',emoji:'⚡',mult:5,weight:7,desc:'Цена ×5'},
+{name:'Радужная',emoji:'🌈',mult:5,weight:6,desc:'Цена ×5'},
+{name:'Дискотечная',emoji:'🪩',mult:5.5,weight:5,desc:'Цена ×5,5'},
+{name:'Заражённая пустотой',emoji:'🕳️',mult:6,weight:4.5,desc:'Цена ×6'},
+{name:'Зомбированная',emoji:'🧟',mult:6,weight:4,desc:'Цена ×6'},
+{name:'Плазменная',emoji:'🔮',mult:6.5,weight:3.5,desc:'Цена ×6,5'},
+{name:'Небесная',emoji:'🌠',mult:7,weight:3,desc:'Цена ×7'},
+{name:'Космическая',emoji:'🌌',mult:8,weight:2.5,desc:'Цена ×8'},
+{name:'Заря',emoji:'🌅',mult:8.5,weight:2,desc:'Цена ×8,5'},
+{name:'Божественная',emoji:'👑',mult:10,weight:1.2,desc:'Цена ×10'},
+{name:'Райская',emoji:'🪽',mult:12,weight:.7,desc:'Цена ×12'}
+];
 let state=load();function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&Number.isFinite(s.coins)&&Array.isArray(s.items)){if(!Number.isFinite(s.luckLevel))s.luckLevel=0;return s}}catch(e){}return {coins:500,items:[],daily:false,nextId:1,luckLevel:0}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}function el(id){return document.getElementById(id)}
 function toast(msg){const t=el('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.add('hidden'),2300)}
