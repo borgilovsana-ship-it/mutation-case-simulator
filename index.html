@@ -101,7 +101,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}f
 function toast(msg){const t=el('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.add('hidden'),2300)}
 const luckCosts=[250,500,1000,2000,4000];const caseCosts=[300,700,1500,3000,6000];const openCosts=[100,150,225,340,510,765];const rarityTier={'Обычное':0,'Необычное':1,'Редкое':2,'Эпическое':3,'Легендарное':4,'Мифическое':5,'Божественное':6};function weighted(arr){const boost=(state.luckLevel||0)+(state.caseLevel||0)*.8;const useLuck=arr===plants&&boost>0;const weights=arr.map(x=>{if(!useLuck)return x.weight;const tier=rarityTier[x.rarity]||0;const factor=tier<2?Math.max(.18,1-boost*.11):1+boost*.65*(tier-1);return x.weight*factor});let total=weights.reduce((s,w)=>s+w,0),r=Math.random()*total;for(let i=0;i<arr.length;i++){r-=weights[i];if(r<0)return arr[i]}return arr[arr.length-1]}
 const marsPlants=[
-{name:'Марсианский мох',emoji:'🌱',rarity:'Эпическое',base:60,weight:10,marsOnly:true},
+{name:'Марсианский мох',emoji:'🌱',rarity:'Эпическое',base:60000,weight:10,marsOnly:true},
 {name:'Красный кактус',emoji:'🌵',rarity:'Эпическое',base:250,weight:9,marsOnly:true},
 {name:'Пыльная роза',emoji:'🌹',rarity:'Эпическое',base:1200,weight:8,marsOnly:true},
 {name:'Кристалл Фобоса',emoji:'💎',rarity:'Легендарное',base:6000,weight:7,marsOnly:true},
